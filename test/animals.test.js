@@ -2,7 +2,7 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 describe('items route', () => {
-  it('can create an itme with POST', () => {
+  it('can create an animal with POST', () => {
     return request(app)
       .post('/api/v1/animals')
       .send({ 
@@ -34,11 +34,11 @@ describe('items route', () => {
     return request(app)
       .get('/api/v1/animals/0')
       .then(res => {
-        expect(res.body).toEqual([{ 
+        expect(res.body).toEqual({ 
           name: 'panda', 
           legs: '4', 
           fluffy: 'not really' 
-        }]);
+        });
       });
   });
   it('can update animal with PUT', () => {
@@ -58,9 +58,9 @@ describe('items route', () => {
         });
       });
   });
-  it('deletes an item by index', () => {
+  it('deletes an animal by index', () => {
     return request(app)
-      .delete('/api/v1/animals')
+      .delete('/api/v1/animals/0')
       .then(res => {
         // send back the object that was deleted
         expect(res.body).toEqual({
