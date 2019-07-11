@@ -58,4 +58,16 @@ describe('items route', () => {
         });
       });
   });
+  it('deletes an item by index', () => {
+    return request(app)
+      .delete('/api/v1/animals')
+      .then(res => {
+        // send back the object that was deleted
+        expect(res.body).toEqual({
+          name: 'cat',
+          legs: '4',
+          fluffy: 'exceptionally so'
+        });
+      });
+  });
 });
